@@ -1,0 +1,211 @@
+<!--http://eonasdan.github.io/bootstrap-datetimepicker/-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <title>bootstrap-datetimepicker :: eonasdan</title>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!--        core-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<!--        https://cdnjs.com/libraries/moment.js/-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>        
+
+<!--        https://cdnjs.com/libraries/bootstrap-datetimepicker-->
+        <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form class="form-horizontal" action="">
+               
+                        <!-- <div class="form-group">
+                            <label class="control-label col-sm-2" for="datepicker">Date</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="datepicker" name="datepicker" placeholder="Enter Date" />
+                            </div>
+                        </div> -->
+                        
+                        <!-- <div class="form-group">
+                            <label class="control-label col-sm-2" for="timepicker">Time</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="timepicker" name="timepicker" placeholder="Enter Time" />
+                            </div>
+                        </div> -->
+                        
+                         <div class="form-group">
+                            <label class="control-label col-sm-2" for="datetimepicker">from</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="datetimepicker" name="datetimepicker" placeholder="Enter Date Time" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="datetimepicker">to</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="datetimepickerTO" name="datetimepicker" placeholder="Enter Date Time" />
+                            </div>
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="datetimeStartPicker">Datetime Start</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="datetimeStartPicker" name="datetimeStartPicker" placeholder="Enter Date Time Start" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="datetimeEndPicker">Datetime End</label>
+                            <div class="col-sm-10">          
+                                <input class="form-control" type="text" id="datetimeEndPicker" name="datetimeEndPicker" placeholder="Enter Date Time End" />
+                            </div>
+                        </div> -->
+        
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <select class="form-select selTime" aria-label="Default select example">
+                        <option selected>select time</option>
+                        <option value="30">Last 30 minute </option>
+                        <option value="1">Last 1 hour</option>
+                        <option value="2">Last 2 hour</option>
+                        <option value="3">Last 3 hour</option>
+                        <option value="6">Last 6 hour</option>
+                        <option value="12">Last 12 hour</option>
+                        <option value="24">Last 24 hour</option>
+                      </select>
+
+                </div>
+            </div>
+
+         
+            
+
+            <h1>MomentJS - Subtract Method</h1>
+            <div style="font-size:25px" id="currentdate"></div>
+            <br/>
+            <br/>
+            <div style="font-size:25px" id="changeddate"></div>
+            <br/>
+            <br/>
+            <div style="font-size:25px" id="changeddate1"></div>
+            <br/>
+            <br/>
+            <div style="font-size:25px" id="changeddate2"></div>
+          
+            
+
+            
+
+        </div>
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <script>
+
+ 
+            $('.selTime').on('change', function() {
+               
+                var day = moment();
+                document.getElementById("currentdate").innerHTML = "Current Date: " + day._d;
+                if(this.value == "30"){
+                    var changeddate1 = moment().subtract(30,'minutes');
+                    document.getElementById("changeddate1").innerHTML = "Subtracting 30 minutes: " + changeddate1._d;
+                }
+               else{
+                
+                var changeddate1 = moment().subtract(this.value, 'hour');
+                document.getElementById("changeddate1").innerHTML = "Subtracting 1 hour chaining method: " + changeddate1._d;
+                }
+              });
+            
+            $(function () {           
+
+              
+               
+                /*<!-- var day = moment();
+                document.getElementById("currentdate").innerHTML = "Current Date: " + day._d;
+                var changeddate = moment().subtract(5, 'days').subtract(2, 'months');
+                document.getElementById("changeddate").innerHTML = "Subtracting 5 days and 2 month using chaining method: " + changeddate._d;
+                var changeddate1 = moment().subtract({ days: 5, months: 2 });
+                document.getElementById("changeddate1").innerHTML = "Subtracting 5 days and 2 month using object method: " + changeddate1._d;
+                var duration = moment.duration({ 'days': 10 });
+                var changeddate2 = moment([2017, 10, 15]).subtract(duration);
+                document.getElementById("changeddate2").innerHTML = "Subtracting 10 days from given date using duration method: " + changeddate2._d; */
+                
+                
+    
+                /* setting date */
+                $("#datepicker").datetimepicker({
+                    format : "YYYY-MM-DD"
+                });
+                
+                /* setting time */
+                $("#timepicker").datetimepicker({
+                    format : "HH:mm:ss"
+                });
+                
+                var dateNow = new Date();
+                /* setting datetime */
+                $("#datetimepicker").datetimepicker({
+                    format : "YYYY-MM-DD HH:mm:ss",
+                    //defaultDate: moment('2015-01-01')
+                    defaultDate:dateNow
+
+                });
+
+                $("#datetimepickerTO").datetimepicker({
+                    format : "YYYY-MM-DD HH:mm:ss",
+                    //defaultDate: moment('2015-01-01'),
+                    defaultDate:dateNow
+
+                });
+        
+                /* range */
+                $(".input-daterange").datetimepicker({
+                    format : "YYYY-MM-DD"
+                });
+                
+            });                
+        
+        </script>
+        
+        <script>
+
+            $(function () {
+
+                $("#datetimeStartPicker").datetimepicker();
+                $("#datetimeEndPicker").datetimepicker({
+                    defaultDate: moment('2015-01-01'),
+                    useCurrent: false //Important! See issue #1075
+                });
+
+                $("#datetimeStartPicker").on("dp.change", function (e) {
+                    $("#datetimeEndPicker").data("DateTimePicker").minDate(e.date);
+                });
+
+                $("#datetimeEndPicker").on("dp.change", function (e) {
+                    $("#datetimeStartPicker").data("DateTimePicker").maxDate(e.date);
+                });
+
+            });
+
+        </script>        
+
+    </body>
+
+</html>
